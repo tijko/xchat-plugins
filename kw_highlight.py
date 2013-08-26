@@ -7,6 +7,23 @@ __module_description__ = 'Highlight key-words.'
 
 '''
 This is a xchat-plugin to highlight keywords that show up in a channel.
+
+When loaded 'kw_highlight' creates a list of 'keywords' to check a 
+channel for and make bold if found.
+
+The list is created from python 2.7 __builtins__ and most of the modules
+in /usr/lib/python2.7.  
+
+If you want to see which words are listed use:
+
+Usage: /SHOWKW
+
+This will print out the list to your xchat screen.
+If you'd like to add some other keywords to track:
+
+Usage: /ADD <keyword> 
+
+Now, the supplied <keyword> will be also checked for.
 '''
 
 import xchat
