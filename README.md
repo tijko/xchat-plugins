@@ -23,10 +23,8 @@ To check for a specific meaning.
 This is a xchat-plugin to highlight keywords that show up in a channel.
 
 When loaded 'kw_highlight' creates a list of 'keywords' to check a 
-channel for and make bold if found.
-
-The list is created from python 2.7 __builtins__ and most of the modules
-in /usr/lib/python2.7.  
+channel for and make bold if found.The list is created from python 2.7 
+__builtins__ and most of the modules in /usr/lib/python2.7.  
 
 If you want to see which words are listed use:
 
