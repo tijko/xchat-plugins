@@ -3,7 +3,7 @@ xchat-plugins
 
 A couple of plugins for xchat clients.
 
-####chk_wiki
+#####chk_wiki:
 This is a xchat-plugin to find any information on an item from wikipedia.
 
 The 'chk_wiki' plugin will scrape wikipedia looking for any information on 
@@ -19,7 +19,7 @@ pages will be show/printed.  You can then use:
 
 To check for a specific meaning.
 
-####kw_highlight
+#####kw_highlight:
 This is a xchat-plugin to highlight keywords that show up in a channel.
 
 When loaded 'kw_highlight' creates a list of 'keywords' to check a 
@@ -30,11 +30,11 @@ in /usr/lib/python2.7.
 
 If you want to see which words are listed use:
 
-Usage: /SHOWKW
+    Usage: /SHOWKW
 
 This will print out the list to your xchat screen.
 If you'd like to add some other keywords to track:
 
-Usage: /ADD <keyword> 
+    Usage: /ADD <keyword> 
 
 Now, the supplied <keyword> will be also checked for.
