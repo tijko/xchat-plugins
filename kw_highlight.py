@@ -54,12 +54,13 @@ def load_modkw():
     return
 
 def keyword_highlight(privmsg, privmsg_slice, xchat_data):
+    user = privmsg[0].split('!')[0][1:]
     privmsg[3] = privmsg[3][1:]
     msg = privmsg[3:]
     for word in enumerate(msg):
         if word[1].strip(punctuation) in KEYWORDS: 
             msg[word[0]] = '\002' + word[1] + '\002'
-    xchat.prnt(' '.join(i for i in msg))
+    xchat.emit_print('Channel Message', user, ' '.join(i for i in msg))
     return xchat.EAT_XCHAT
 
 def add_keyword(cmd_msg, cmd_slice, xchat_data):
