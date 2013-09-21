@@ -28,29 +28,20 @@ Now, the supplied <keyword> will be also checked for.
 
 import xchat
 import os
-import imp
+import pkgutil 
 from string import punctuation
 
-
-KEYWORDS = [i for i in dir(__builtins__) if not i.startswith('_')] 
+#XXX remove a keyword command
+KEYWORDS = list() 
+NONKEYWORDS = ['copy', 'email', 'keyword', 'mailbox', 'new', 'numbers',
+               'platform', 'profile', 'sets', 'site', 'stat', 'test',
+               'tempfile', 'this', 'traceback', 'types', 'trace', 'user']
 
 def load_modkw():
     path = '/usr/lib/python2.7/'
-    modules = [i for i in os.listdir(path) if i.endswith('.py') and
-               not i.startswith('_') and i != 'this.py' and i != 'gzip.py' and
-               i != 'antigravity.py']
-    for module in modules:
-            try:
-                mod = module.strip('.py')
-                import_mod = imp.load_source(mod, path + module)
-                for kw in dir(import_mod):
-                    if kw not in KEYWORDS and not i.startswith('_'):
-                        KEYWORDS.append(kw)
-                if mod not in KEYWORDS:
-                    KEYWORDS.append(mod)
-                del(mod)
-            except TypeError or ImportError:
-                pass
+    for mod in pkgutil.iter_modules([path]):
+        if mod[1] not in NONKEYWORDS:
+            KEYWORDS.append(mod[1])
     return
 
 def keyword_highlight(privmsg, privmsg_slice, xchat_data):
