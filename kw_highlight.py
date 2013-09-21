@@ -31,11 +31,12 @@ import os
 import pkgutil 
 from string import punctuation
 
-#XXX remove a keyword command
+
 KEYWORDS = list() 
 NONKEYWORDS = ['copy', 'email', 'keyword', 'mailbox', 'new', 'numbers',
                'platform', 'profile', 'sets', 'site', 'stat', 'test',
-               'tempfile', 'this', 'traceback', 'types', 'trace', 'user']
+               'tempfile', 'this', 'traceback', 'types', 'trace', 'user',
+               'code', 'string', 'compiler', 'commands', 'random']
 
 def load_modkw():
     path = '/usr/lib/python2.7/'
@@ -56,10 +57,18 @@ def keyword_highlight(privmsg, privmsg_slice, xchat_data):
 
 def add_keyword(cmd_msg, cmd_slice, xchat_data):
     if len(cmd_msg) < 2:
-        xchat.prnt('Usage: /ADD <keyword>, adds a keyword to highlight.')
+        xchat.prnt('Usage: /ADDKW <keyword>, adds a keyword to highlight.')
     else:
         for kw in cmd_msg[1:]:
             KEYWORDS.append(kw)
+    return xchat.EAT_ALL
+
+def remove_keyword(cmd_msg, cmd_slice, xchat_data):
+    if len(cmd_msg) < 2:
+        xchat.prnt('Usage: /RMKW <keyword>, removes a keyword from list of highlighted keywords.')
+    else:
+        if cmd_msg[1] in KEYWORDS:
+            KEYWORDS.remove(cmd_msg[1])
     return xchat.EAT_ALL
     
 def show_keywords(cmd_msg, cmd_slice, xchat_data):
@@ -70,8 +79,11 @@ load_modkw()
 
 xchat.hook_server('PRIVMSG', keyword_highlight)
 
-xchat.hook_command('ADD', add_keyword, 
-                   help='Usage: /ADD <keyword>, adds a keyword to highlight.')
+xchat.hook_command('ADDKW', add_keyword, 
+                   help='Usage: /ADDKW <keyword>, adds a keyword to highlight.')
+
+xchat.hook_command('RMKW', remove_keyword,
+                   help='Usage: /RMKW <keyword>, removes a keyword from list of highlighted keywords.')
 
 xchat.hook_command('SHOWKW', show_keywords, 
                    help='Usage: /SHOWKW, prints all the keywords that are looked for.')
