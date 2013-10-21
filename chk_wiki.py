@@ -17,11 +17,11 @@ Usage: /WIKI <query>
 If the <query> request returns results showing multiple pages, those
 pages will be show/printed.  You can then use:
 
-/WIKI <listed_uery> (listed_query being one of specific names listed) 
+/WIKI <listed_uery> (listed_query being one of specific names listed)  
 
 To check for a specific meaning. 
 '''
-   
+#XXX use a file to hold 'multiples' then have a command to find the index of the specific multiple
 import xchat
 import requests
 from BeautifulSoup import BeautifulSoup
@@ -46,9 +46,9 @@ def make_request(query):
 
 def bad_request(error):
     xchat.prnt('Bad Request!')
-    xchat.prnt('Reason: ' + error.reason)
-    xchat.prnt('Error Code: ' + str(error.status_code))
-    xchat.prnt('Address: ' + error.url)
+    xchat.prnt('Reason: %s' % error.reason)
+    xchat.prnt('Error Code: %s' % str(error.status_code))
+    xchat.prnt('Address: %s' % error.url)
 
 def parse_response(page_data):
     page = page_data.content
