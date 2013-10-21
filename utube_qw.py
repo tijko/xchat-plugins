@@ -32,7 +32,7 @@ def tube_query(cmd_req, query, xchat_data=None):
         xchat.prnt('Usage: /TUBE <query>, finds youtube videos on <query>.')
     else:
         query = '+'.join(query[1].split())
-        query = ("https://www.googleapis.com/youtube/v3/search?part=snippet"
+        query = ("https://www.googleapis.com/youtube/v3/search?part=id"
                  "&q=%s&type=video&maxResults=10&key=%s"
                  % (query, DEVELOPER_KEY))
         make_request(query)
@@ -54,7 +54,7 @@ def bad_request(error):
 def parse_response(page_data):
     page_data = page_data.json()
     for video in page_data['items']:
-        xchat.prnt("%s" % video['snippet']['title'])
+        xchat.prnt("<https://www.youtube.com/watch?v=%s>" % video['id']['videoId'])
 
 xchat.hook_command('TUBE', tube_query,
                     help='Usage: /TUBE <query>, finds youtube videos on <query>.')
