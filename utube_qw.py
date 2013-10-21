@@ -57,7 +57,7 @@ def bad_request(error):
 def parse_response(page_data):
     page_data = page_data.json()
     for video in page_data:
-        xchat.prnt("%s", % video['snippet']['title'])
+        xchat.prnt("%s" % video['snippet']['title'])
 
 xchat.hook_command('TUBE', youtube_search,
                     help='Usage: /TUBE <query>, finds youtube videos on <query>.')
